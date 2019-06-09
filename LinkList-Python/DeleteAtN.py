@@ -11,49 +11,64 @@ class Node:
         self.data = data
         self.next = None
         
-class LinkedList:
+class LinkList:
     def __init__(self):
-        #initialize the head
         self.head = None
         
+    def push (self, new_data):
         
-    #Insert at the begining
-    def push(self, new_data):
+        #create a  new node for new data to store
         new_node = Node(new_data)
-        new_node.next = self.head
-        self.head = new_node
+        
+        #migrate forward with new node
+        new_node.next = head
+        
+        #make head store the adddress of new node
+        head = new_node
+        
+    def deleteList(self):
+        current = self.head
+        while current:
+            prev = current.next
+            del current.data
+            current = prev
+            
+    def length(self):
+        temp = self.head
+        while(temp !=None):
+            
+            count +=1
+            temp = temp.next
+        return count
         
         
-    def delete(self, position):
-        
-        #Base Case
-        if(self.head == None):
+    def deleteNode(self, position):
+        if (self.head ==None):
             return
-        
-        #Store the head node
         temp = self.head
         
-        #if head node needs to be removed 
-        if position ==0:
+        if (position == 0):
             self.head = temp.next
             temp = None
-            
-        #Find the previous of the node to be deleted
-        for i in range(position-1):
-            temp = temp.next
-            if temp is None:
-                break
-            
-        #if position is more than number of nodes
-        if temp is None:
             return
-        if temp.next is None:
-            return 
         
-        
-        # temp.next(n) to be deleted from current(n-1) and join to (n+1)temp.next.next
-        
-        next = temp.next.next
-        temp.next = None
-        temp.next = next
+        for i in range(position -1):
+            temp = temp.next #from n-1 go to current node to be deleted
+            
+            if(temp.next == None):
+                return
+            
+            next = temp.next.next #go to n+1 node
+            temp.next = None
+            temp.next = next
+            
+    def search(self, x):
+        temp = self.head
+        while( temp != None):
+            if(temp.data == x):
+                return True
+            temp = temp.next
+            
+        return False
+            
         
