@@ -22,16 +22,21 @@ class LinkedList:
         self.head = new_node
         
     def swap(self):
-        temp  = self.head
+       temp =self.head
+       
+       while(temp is not None and temp.next is not None):
+           a= temp
+           b = temp.next
+           c = temp.next.next
+           a, b = b,a 
+           
+           c = a
+       return a.data
         
-        if temp is None:
-            return 
-        
-        while(temp is not None and temp.next is not None):
-            #swap the data
-            temp, temp.next = temp.next, temp
-            temp = temp.next.next
-            
+      
+          
+       
+       
             
     def Print(self):
         temp = self.head
@@ -52,7 +57,7 @@ if __name__ == '__main__':
     print ("Linked list before calling pairWiseSwap() ")
     llist.Print() 
     
-    llist.swap() 
+    print( llist.swap() )
     
     print ( "\nLinked list after calling pairWiseSwap()")
     llist.Print() 
